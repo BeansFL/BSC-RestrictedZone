@@ -1,16 +1,20 @@
--- Handles the "zoneAdd" command
+    -- Handles the "zoneAdd" command
 RegisterCommand(Config.CreateCommand, function(source, args, rawCommand)
     -- Get the radius of the zone from the command arguments
     local radius = tonumber(args[1])
   
     -- Get the player who sent the command
     local xPlayer = ESX.GetPlayerFromId(source)
+
+    -- Coords of the player who sent the command
+    local coords = table.pack(GetEntityCoords(GetPlayerPed(source), true))
   
     -- Check if the player has an allowed job
     for k,v in pairs(Config.Jobs) do
       if xPlayer.job.name == v then
+        
         -- Trigger an event to create the zone on the client
-        TriggerClientEvent("bsc_conclusionzone:addZone", -1, source, radius)
+        TriggerClientEvent("bsc_conclusionzone:addZone", -1, source, radius, coords)
   
         -- Show a notification to the player
         TriggerClientEvent('esx:showAdvancedNotification', source, Config.NotifyTitle, '~r~', Config.NotifyMessage, Config.NotifyPicture, 3)
