@@ -1,6 +1,6 @@
 -- Add blips when "bsc_conclusionzone:addZone" event is triggered
 RegisterNetEvent("bsc_conclusionzone:addZone")
-AddEventHandler("bsc_conclusionzone:addZone", function(sender, radius)
+AddEventHandler("bsc_conclusionzone:addZone", function(sender, radius, coords)
   -- Remove existing blips
   RemoveBlip(locationBlip)
   RemoveBlip(radiusBlip)
@@ -9,8 +9,9 @@ AddEventHandler("bsc_conclusionzone:addZone", function(sender, radius)
   radius =  blipRadius
 
   -- Get sender's player ped and location
+  local receivedCoords = coords
   local senderId = sender
-  local senderCoords = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(senderId)))
+  local senderCoords = receivedCoords
 
   -- Create location blip 
   locationBlip = AddBlipForCoord(senderCoords.x, senderCoords.y, senderCoords.z)
