@@ -14,8 +14,9 @@ Config.Jobs = {
   "police",
   "doa",
   "sheriff",
-  "doj", 
+  "doj" ,
   "ambulance"
+
 }
 
 -- Command that players with allowed jobs can use to create an exclusion zone
